@@ -23,6 +23,9 @@ after_success:
     - docker push smokegrenade/multi-server
     - docker push smokegrenade/multi-worker
 
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY
+    
 deploy:
     edge: true
     provider: elasticbeanstalk
@@ -33,6 +36,4 @@ deploy:
     bucket_path: docker-multi
     on:
         branch: master
-        
-access_key_id: $AWS_ACCESS_KEY
-secret_access_key: $AWS_SECRET_KEY
+
