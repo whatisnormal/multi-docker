@@ -22,3 +22,17 @@ after_success:
     - docker push smokegrenade/multi-nginx
     - docker push smokegrenade/multi-server
     - docker push smokegrenade/multi-worker
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: MultiDocker-env
+    bucket_name: elasticbeanstalk-us-east-2-898879965557
+    bucket_path: docker-multi
+    on:
+        branch: master
+        
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY

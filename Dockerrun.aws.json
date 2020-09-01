@@ -1,0 +1,36 @@
+{
+    "AWSEBCodkerrunVersion" : 2, 
+    "containerDefinitions" : [
+        {
+            "name" : "client",
+            "image" : "smokegrenade/multi-client",
+            "hostname" : "client",
+            "essential" : false
+        },
+        {
+            "name": "server",
+            "image": "smokegrenade/multi-server",
+            "hostname": "api",
+            "essential": false
+        },        
+        {
+            "name": "worker",
+            "image": "smokegrenade/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        }  ,
+        {
+            "name": "nginx",
+            "image": "smokegrenade/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings" : [
+                {
+                    "hostPort" : 80,
+                    "containerPort" : 80
+                }
+            ],
+            "links" : ["client", "server"]
+        }
+    ]
+}
